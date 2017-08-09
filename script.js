@@ -17,6 +17,7 @@ function Queue() {
 
 function Library() {
     this.books = new Queue();
+    this.actualBook = null;
     this.likes = 0;
     this.dislike = 0;
 
@@ -32,20 +33,18 @@ function Library() {
     this.dislike = function() {
         this.next();
         this.dislikes++;
-        
     };
 
     this.booksLikes = function() {
         var totalLikes = 0;
         for(var i=0; i < this.books.length; i++) {
-           totalLikes += this.books[i].likes; 
+            totalLikes += this.books[i].likes; 
         };
     };
     
-     
     this.next = function () {
-        var actualBook = this.books.deQueue();
-        actualBook.render();
+        this.actualBook = this.books.deQueue();
+        this.actualBook.render();
     };
 };
 
@@ -83,16 +82,22 @@ library.addBook(book3);
 
 library.next();
 
+$(".without_books").hide();
 
-$(".btn-success, .btn-danger").click(function() {
-    library.like();
-    $("#clicks").html(library.likes);
+$(".btn-success").click(function() {
+    if ( library.books.data.length  == 0 ) {
+        $("#bookContainer").hide();
+        $(".without_books").show();
+    }else{
+        library.like();
+        $("#clicks").html(library.likes);
+    };
 });    
 
-$(".btn-danger").click(function() {     
+/*$(".btn-danger").click(function() {     
     library.dislike();
     $("#clicks").html(library.dislikes);
-});
+});*/
 
 
 
