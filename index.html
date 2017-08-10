@@ -6,10 +6,12 @@
         <link rel="stylesheet" href="bootstrap/bootstrap.css">
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    
+        
+    <body> 
         <div class="container-fluid">
             <div class="row" id="bookContainer">
-                 <div class="livro col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2">
+                <div class="livro col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2">
                     <img alt="">
                     <h1></h1>
                     <p></p>
@@ -18,15 +20,18 @@
                 </div>
                 <label id="clicks"></label>
                 <label id="labelgostos">Gostos</label>
+                
                 <div class="button">
-                <!-- <button onClick="removeLikes();" class="btn btn-danger unlike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
-                <button onClick="addLikes();" class="btn btn-success like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button> -->
-                <button data-Opinion="Dislike" class="btn btn-danger" ><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
-                <button data-Opinion="Like" class="btn btn-success" ><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button>
+                    <!-- <button onClick="removeLikes();" class="btn btn-danger unlike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
+                    <button onClick="addLikes();" class="btn btn-success like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button> -->
+                    <button data-Opinion="Dislike" class="btn btn-danger" ><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
+                    <button data-Opinion="Like" class="btn btn-success" ><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button>
+                </div>
+                <label>Pesquisa</label>
+                <input type="text" name="pesquisa" id="pesquisa">
+                <button id="executa_pesquisa">Pesquisar</button>
             </div>
-            </div>
-        </div>
-            
+    
             <div class="without_books">
                 <h1>THERE ARE NO MORE BOOKS!!!</h1>
             </div>

@@ -48,7 +48,6 @@ function Library() {
     };
 };
 
-
 function Book(image, title, genre, link) {
     this.image = image;
     this.title = title;
@@ -65,22 +64,47 @@ function Book(image, title, genre, link) {
     };
 };
 
+function init() {
+    var paramPesquisa = "spiderman";
+    $.get("https://www.googleapis.com/books/v1/volumes?q="+encodeURI(paramPesquisa)).done(function(data){
+        
+        console.log(data);
+        for(var i=0; i < data.items.length; i++) {
+            var jsonImage = data.items[i].volumeInfo.imageLinks.thumbnail;
+            var jsonTitle = data.items[i].volumeInfo.title;
+            var jsonCategory = data.items[i].volumeInfo.categories;
+            var jsonLink = data.items[i].saleInfo.buyLink;
+            var book = new Book(jsonImage, jsonTitle, jsonCategory, jsonLink);
+            library.addBook(book);
+        };
+        library.next();
+        
+    }).fail(function(data){
+        console.log(data);
+    });
+};
+
+var library = new Library();
+init();
+
+
+
 /*Before this instantiation ("var library ="), the constructor ("Library()") is just a MODEL
 and does nothing*/
-var library = new Library();
-var book = new Book();
+//var library = new Library();
+// var book = new Book();
 
 
-var book1 = new Book("images/dragonfly.jpeg", 'Dragonfly', 'Novel', 'https://www.amazon.com/Outdoor-Decor-Evergreen-Enterprises-Dragonfly/dp/B00NWP2FKI');
-library.addBook(book1);
+// var book1 = new Book("images/dragonfly.jpeg", 'Dragonfly', 'Novel', 'https://www.amazon.com/Outdoor-Decor-Evergreen-Enterprises-Dragonfly/dp/B00NWP2FKI');
+// library.addBook(book1);
 
-var book2 = new Book("images/enchantment.jpeg", 'Enchantment', 'Business', 'https://www.amazon.com/Enchantment-Changing-Hearts-Minds-Actions/dp/1591845831/ref=sr_1_1?s=lawn-garden&ie=UTF8&qid=1500994055&sr=8-1&keywords=business+book+enchantment');
-library.addBook(book2);
+// var book2 = new Book("images/enchantment.jpeg", 'Enchantment', 'Business', 'https://www.amazon.com/Enchantment-Changing-Hearts-Minds-Actions/dp/1591845831/ref=sr_1_1?s=lawn-garden&ie=UTF8&qid=1500994055&sr=8-1&keywords=business+book+enchantment');
+// library.addBook(book2);
 
-var book3 = new Book("images/making_short_films.jpeg", 'Making Short Films', 'Arts/Cinema', 'https://www.amazon.com/Making-Short-Films-Complete-Script/dp/1845208048/ref=sr_1_cc_9?s=aps&ie=UTF8&qid=1500994228&sr=1-9-catcorr&keywords=making+short+films');
-library.addBook(book3);
+// var book3 = new Book("images/making_short_films.jpeg", 'Making Short Films', 'Arts/Cinema', 'https://www.amazon.com/Making-Short-Films-Complete-Script/dp/1845208048/ref=sr_1_cc_9?s=aps&ie=UTF8&qid=1500994228&sr=1-9-catcorr&keywords=making+short+films');
+// library.addBook(book3);
 
-library.next();
+//library.next();
 
 $(".without_books").hide();
 
@@ -89,6 +113,7 @@ $(".btn-success").click(function() {
         $("#bookContainer").hide();
         $(".without_books").show();
     }else{
+        
         library.like();
         $("#clicks").html(library.likes);
     };
