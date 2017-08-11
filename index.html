@@ -10,28 +10,33 @@
         
     <body> 
         <div class="container-fluid">
+            <div class="landingPage">
+                <h1>Start your Search</h1>
+                <input type="text" name="primeiraPesquisa" id="primeiraPesquisa">
+                <button id="primeira_pesquisa">Go</button>
+            </div>
             <div class="row" id="bookContainer">
                 <div class="livro col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2">
-                    <img alt="">
+                    <img id="bookImg">
                     <h1></h1>
                     <p></p>
                     <div class="link">
-                    <a target="_blank">buy</a>
-                </div>
-                <label id="clicks"></label>
-                <label id="labelgostos">Gostos</label>
+                        <a target="_blank">buy</a>
+                    </div>
+                    <label id="clicks"></label>
+                    <label id="labelgostos">Gostos</label>
                 
-                <div class="button">
-                    <!-- <button onClick="removeLikes();" class="btn btn-danger unlike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
-                    <button onClick="addLikes();" class="btn btn-success like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button> -->
-                    <button data-Opinion="Dislike" class="btn btn-danger" ><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
-                    <button data-Opinion="Like" class="btn btn-success" ><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button>
+                    <div class="button">
+                        <!-- <button onClick="removeLikes();" class="btn btn-danger unlike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
+                        <button onClick="addLikes();" class="btn btn-success like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button> -->
+                        <button data-Opinion="Dislike" class="btn btn-danger" ><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Não gosto</button>
+                        <button data-Opinion="Like" class="btn btn-success" ><i class="fa fa-thumbs-up" aria-hidden="true"></i>Gosto</button>
+                    </div>
+                    <label>Pesquisa</label>
+                    <input type="text" name="pesquisa" id="pesquisa">
+                    <button id="executa_pesquisa">Pesquisa</button>
                 </div>
-                <label>Pesquisa</label>
-                <input type="text" name="pesquisa" id="pesquisa">
-                <button id="executa_pesquisa">Pesquisar</button>
             </div>
-    
             <div class="without_books">
                 <h1>THERE ARE NO MORE BOOKS!!!</h1>
             </div>

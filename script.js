@@ -2,6 +2,7 @@
 function Queue() {
 
     this.data = []; 
+    
 
     this.enQueue = function(element) { 
         this.data.push(element);
@@ -20,6 +21,8 @@ function Library() {
     this.actualBook = null;
     this.likes = 0;
     this.dislike = 0;
+    this.bookCart = [];
+    
 
     this.addBook = function(book) {
         this.books.enQueue(book);
@@ -41,10 +44,14 @@ function Library() {
             totalLikes += this.books[i].likes; 
         };
     };
-    
+
     this.next = function () {
         this.actualBook = this.books.deQueue();
         this.actualBook.render();
+    };
+
+    this.addToCart = function () {
+        this.bookCart.push(this.actualBook);
     };
 };
 
@@ -64,10 +71,10 @@ function Book(image, title, genre, link) {
     };
 };
 
-function init() {
-    var paramPesquisa = "spiderman";
+var library = new Library();
+function init(paramPesquisa) {
     $.get("https://www.googleapis.com/books/v1/volumes?q="+encodeURI(paramPesquisa)).done(function(data){
-        
+        library.books = new Queue();
         console.log(data);
         for(var i=0; i < data.items.length; i++) {
             var jsonImage = data.items[i].volumeInfo.imageLinks.thumbnail;
@@ -77,15 +84,38 @@ function init() {
             var book = new Book(jsonImage, jsonTitle, jsonCategory, jsonLink);
             library.addBook(book);
         };
-        library.next();
         
+        library.next();
     }).fail(function(data){
         console.log(data);
     });
 };
 
-var library = new Library();
-init();
+$(".without_books").hide();
+$("#bookContainer").hide();
+$(".landingPage").show();
+
+
+$("#primeira_pesquisa").click(function(){
+    $(".landingPage").hide();
+    $("#bookContainer").show();
+
+    var paramPesquisa = $("#primeiraPesquisa").val();
+    //library.books.data = [];
+    init(paramPesquisa);
+});
+
+$("#executa_pesquisa").click(function(){
+    
+    var paramPesquisa = $("#pesquisa").val();
+    //library.books.data = [];
+    init(paramPesquisa);
+});
+
+
+$("#bookImg").click(function(){
+    library.addToCart();
+});
 
 
 
@@ -106,8 +136,7 @@ and does nothing*/
 
 //library.next();
 
-$(".without_books").hide();
-
+//$(".without_books").hide();
 $(".btn-success").click(function() {
     if ( library.books.data.length  == 0 ) {
         $("#bookContainer").hide();

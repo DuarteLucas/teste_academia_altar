@@ -42,6 +42,10 @@ body {
 #livro3 {
     float: left;
 }
+.landingPage {
+    text-align: center;
+    margin: 450px auto 450px auto;
+}
 .without_books {
     text-align: center;
     margin: 450px auto 450px auto;
